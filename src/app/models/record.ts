@@ -42,6 +42,19 @@ export class Record {
     return this.end == null;
   }
 
+  public get durationString() {
+    let duration = DateHelper.dateToString(new Date(this.start));
+    duration += ' - ';
+
+    if (this.end != null) {
+      duration += DateHelper.dateToString(new Date(this.end));
+    } else {
+      duration += '...';
+    }
+
+    return duration;
+  }
+
   // #endregion Properties
 
   // #region Constructor

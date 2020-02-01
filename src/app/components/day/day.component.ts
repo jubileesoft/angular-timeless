@@ -35,23 +35,7 @@ export class DayComponent implements OnInit {
 
   get catA(): IDayCat {
     const records = this.recordsCatA;
-
-    const duration = records.reduce(
-      (acc, curr) => acc + curr.getDurationInMinutes(),
-      0
-    );
-
-    let isOpen = false;
-
-    if (records.length > 0) {
-      isOpen = records[records.length - 1].end == null;
-    }
-
-    return {
-      durationInMinutes: duration,
-      durationAsString: TimeHelper.minutesToString(duration),
-      isOpen
-    };
+    return this._buildDayCat(records);
   }
 
   get isCatAButtonDisabled(): boolean {
@@ -67,23 +51,7 @@ export class DayComponent implements OnInit {
 
   get catB(): IDayCat {
     const records = this.recordsCatB;
-
-    const duration = records.reduce(
-      (acc, curr) => acc + curr.getDurationInMinutes(),
-      0
-    );
-
-    let isOpen = false;
-
-    if (records.length > 0) {
-      isOpen = records[records.length - 1].end == null;
-    }
-
-    return {
-      durationInMinutes: duration,
-      durationAsString: TimeHelper.minutesToString(duration),
-      isOpen
-    };
+    return this._buildDayCat(records);
   }
 
   get isCatBButtonDisabled(): boolean {
@@ -99,23 +67,7 @@ export class DayComponent implements OnInit {
 
   get catC(): IDayCat {
     const records = this.recordsCatC;
-
-    const duration = records.reduce(
-      (acc, curr) => acc + curr.getDurationInMinutes(),
-      0
-    );
-
-    let isOpen = false;
-
-    if (records.length > 0) {
-      isOpen = records[records.length - 1].end == null;
-    }
-
-    return {
-      durationInMinutes: duration,
-      durationAsString: TimeHelper.minutesToString(duration),
-      isOpen
-    };
+    return this._buildDayCat(records);
   }
 
   get isCatCButtonDisabled(): boolean {
@@ -200,4 +152,25 @@ export class DayComponent implements OnInit {
   }
 
   tick(value) {}
+
+  private _buildDayCat(records: Record[]): IDayCat {
+    const duration = records.reduce(
+      (acc, curr) => acc + curr.getDurationInMinutes(),
+      0
+    );
+
+    let isOpen = false;
+
+    if (records.length > 0) {
+      isOpen = records[records.length - 1].end == null;
+    }
+
+    return {
+      durationInMinutes: duration,
+      durationAsString: TimeHelper.minutesToString(duration),
+      isOpen,
+      records: records.length,
+      lastRecord: records[records.length - 1]
+    };
+  }
 }

@@ -12,6 +12,17 @@ export class TimeHelper {
 }
 
 export class DateHelper {
+  public static dateToString(date: Date) {
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+
+    return (
+      hours.toString().padStart(2, '0') +
+      ':' +
+      minutes.toString().padStart(2, '0')
+    );
+  }
+
   public static getDayOfYear(date: Date) {
     const start = new Date(date.getFullYear(), 0, 0);
     const diff: number =
