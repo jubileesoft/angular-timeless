@@ -1,138 +1,137 @@
 <div class="root">
-  <div class="media">
-    <div class="main">
-      <div class="cat-buttons">
-        <button 
-          [disabled]="isCatAButtonDisabled"
-          mat-fab color="accent" 
-          (click)="newRecord('A')">
-          <!-- <mat-icon>add</mat-icon> -->
-          A
-        </button>
+  <div class="media main">
+    <div class="cat-buttons">
+      <button 
+        [disabled]="isCatAButtonDisabled"
+        mat-fab color="accent" 
+        (click)="newRecord('A')">
+        <!-- <mat-icon>add</mat-icon> -->
+        A
+      </button>
 
-        <button 
-          mat-fab color="accent" 
-          [disabled]="isCatBButtonDisabled"
-          (click)="newRecord('B')">
-          <!-- <mat-icon>add</mat-icon> -->
-          B
-        </button>
+      <button 
+        mat-fab color="accent" 
+        [disabled]="isCatBButtonDisabled"
+        (click)="newRecord('B')">
+        <!-- <mat-icon>add</mat-icon> -->
+        B
+      </button>
 
-        <button 
-          mat-fab color="accent" 
-          (click)="newRecord('C')"
-          [disabled]="isCatCButtonDisabled"
-          >
-          <!-- <mat-icon>add</mat-icon> -->
-          C
-        </button>
-      </div>
-
-      <div class="separator"></div>
-
-      <!-- CATEGORY A -->
-      <div class="category">
-        <button mat-icon-button class="edit">
-          <mat-icon inline="false">edit</mat-icon>
-        </button>
-        
-        <button 
-          *ngIf="catA.isOpen; else elseBlockA"
-          mat-flat-button (click)="stopOpenRecord('A')"
-          class="button button-lighter" color="accent"
+      <button 
+        mat-fab color="accent" 
+        (click)="newRecord('C')"
+        [disabled]="isCatCButtonDisabled"
         >
-            Stop
-        </button>
-      
-        <ng-template #elseBlockA>          
-          <button 
-            mat-flat-button (click)="newRecord('A')"
-            class="button" color="accent"
-          >
-            Start
-          </button>
-        </ng-template>
-      
-        <div class="hours">{{ catA.durationAsString }}</div>
-        <div class="text">
-          <div>
-            {{catA.records}} records
-          </div>
-          <div>
-            {{catA.lastRecord.durationString}}
-          </div>
-        </div>
-      </div>
-
-      <!-- CATEGORY B -->
-      <div class="category">
-        <button mat-icon-button class="edit">
-          <mat-icon inline="false">edit</mat-icon>
-        </button>
-        
-        <button 
-          *ngIf="catB.isOpen; else elseBlockB"
-          mat-flat-button (click)="stopOpenRecord('B')"
-          class="button button-lighter" color="accent"
-        >
-            Stop
-        </button>
-      
-        <ng-template #elseBlockB>          
-          <button 
-            mat-flat-button (click)="newRecord('B')"
-            class="button" color="accent"
-          >
-            Start
-          </button>
-        </ng-template>
-      
-        <div class="hours">{{ catB.durationAsString }}</div>
-        <div class="text">
-          <div>
-            {{catB.records}} records
-          </div>
-          <div>
-            {{catB.lastRecord.durationString}}
-          </div>
-        </div>
-      </div>
-
-      <!-- CATEGORY C -->
-      <div class="category">
-        <button mat-icon-button class="edit">
-          <mat-icon inline="false">edit</mat-icon>
-        </button>
-        
-        <button 
-          *ngIf="catC.isOpen; else elseBlockC"
-          mat-flat-button (click)="stopOpenRecord('C')"
-          class="button button-lighter" color="accent"
-        >
-            Stop
-        </button>
-      
-        <ng-template #elseBlockC>          
-          <button 
-            mat-flat-button (click)="newRecord('C')"
-            class="button" color="accent"
-          >
-            Start
-          </button>
-        </ng-template>
-      
-        <div class="hours">{{ catC.durationAsString }}</div>
-        <div class="text">
-          <div>
-            {{catC.records}} records
-          </div>
-          <div>
-            {{catC.lastRecord.durationString}}
-          </div>
-        </div>
-      </div>
-
-      <div class="separator"></div>
+        <!-- <mat-icon>add</mat-icon> -->
+        C
+      </button>
     </div>
+
+    <div class="separator"></div>
+
+    <!-- CATEGORY A -->
+    <div class="category">
+      <button mat-icon-button class="edit">
+        <mat-icon inline="false">edit</mat-icon>
+      </button>
+      
+      <button 
+        *ngIf="catA.isOpen; else elseBlockA"
+        mat-flat-button (click)="stopOpenRecord('A')"
+        class="button button-lighter" color="accent"
+      >
+          Stop
+      </button>
+    
+      <ng-template #elseBlockA>          
+        <button 
+          mat-flat-button (click)="newRecord('A')"
+          class="button" color="accent"
+        >
+          Start
+        </button>
+      </ng-template>
+    
+      <div class="hours">{{ catA.durationAsString }}</div>
+      <div class="text">
+        <div>
+          {{catA.records}} records
+        </div>
+        <div>
+          {{catA.lastRecord.durationString}}
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORY B -->
+    <div class="category">
+      <button mat-icon-button class="edit">
+        <mat-icon inline="false">edit</mat-icon>
+      </button>
+      
+      <button 
+        *ngIf="catB.isOpen; else elseBlockB"
+        mat-flat-button (click)="stopOpenRecord('B')"
+        class="button button-lighter" color="accent"
+      >
+          Stop
+      </button>
+    
+      <ng-template #elseBlockB>          
+        <button 
+          mat-flat-button (click)="newRecord('B')"
+          class="button" color="accent"
+        >
+          Start
+        </button>
+      </ng-template>
+    
+      <div class="hours">{{ catB.durationAsString }}</div>
+      <div class="text">
+        <div>
+          {{catB.records}} records
+        </div>
+        <div>
+          {{catB.lastRecord.durationString}}
+        </div>
+      </div>
+    </div>
+
+    <!-- CATEGORY C -->
+    <div class="category">
+      <button mat-icon-button class="edit">
+        <mat-icon inline="false">edit</mat-icon>
+      </button>
+      
+      <button 
+        *ngIf="catC.isOpen; else elseBlockC"
+        mat-flat-button (click)="stopOpenRecord('C')"
+        class="button button-lighter" color="accent"
+      >
+          Stop
+      </button>
+    
+      <ng-template #elseBlockC>          
+        <button 
+          mat-flat-button (click)="newRecord('C')"
+          class="button" color="accent"
+        >
+          Start
+        </button>
+      </ng-template>
+    
+      <div class="hours">{{ catC.durationAsString }}</div>
+      <div class="text">
+        <div>
+          {{catC.records}} records
+        </div>
+        <div>
+          {{catC.lastRecord.durationString}}
+        </div>
+      </div>
+    </div>
+
+    <div class="separator"></div>
+  
   </div>
 </div>
