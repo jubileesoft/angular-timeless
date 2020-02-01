@@ -1,0 +1,37 @@
+@import '../../styles/colors';
+@import '../../styles/theme.scss';
+
+.root {
+  height: 72px;
+  //background: $primary-color;
+  background: $primary-color;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .brand {
+    display: flex;
+    flex-direction: column;
+
+    .name {
+      font-size: 22px;
+      font-weight: 500;
+    }
+
+    .version {
+      font-size: 11px;
+    }
+  }
+
+  .icons {
+    display: flex;
+    flex-direction: row;
+  }
+}

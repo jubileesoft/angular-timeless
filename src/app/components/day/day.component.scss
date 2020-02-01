@@ -1,0 +1,67 @@
+.root {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.main {
+  margin-top: 20px;
+  padding-top: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #393939;
+}
+
+.separator {
+  margin-bottom: 20px;
+  height: 2px;
+  width: 100%;
+  background: #797979;
+}
+
+.cat-buttons {
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.category {
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: stretch;
+
+  .edit {
+    margin-left: 10px;
+  }
+
+  .button {
+    width: 120px;
+    margin-left: 20px;
+  }
+
+  .button-lighter {
+    color: #000000;
+    background: var(--primary-lighter-color);
+  }
+
+  .hours {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 20px;
+    color: #ffffff;
+  }
+
+  .text {
+    flex-grow: 1;
+  }
+}
