@@ -9,7 +9,6 @@
 .header {
   margin-top: 20px;
   padding: 20px;
-  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -21,7 +20,6 @@
   padding-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
-  width: 100%;
   display: flex;
   flex-direction: column;
   background: #393939;
@@ -91,44 +89,3 @@
   }
 }
 
-.category {
-  margin-bottom: 20px;
-  width: 100%;
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: stretch;
-
-  .edit {
-    margin-left: 10px;
-  }
-
-  .button {
-    width: 120px;
-    margin-left: 20px;
-  }
-
-  .button-lighter {
-    color: #000000;
-    background: var(--primary-lighter-color);
-  }
-
-  .hours {
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-weight: 500;
-    font-size: 20px;
-    color: #ffffff;
-  }
-
-  .text {
-    cursor: pointer;
-    align-self: center;
-    align-items: flex-end;
-    display: flex;
-    flex-direction: column;
-    font-size: 12px;
-    color: #ababab;
-  }
-}
