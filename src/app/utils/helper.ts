@@ -41,4 +41,10 @@ export class DateHelper {
       d1.getFullYear() === d2.getFullYear()
     );
   }
+
+  public static constructDate(year: number, day: number): Date {
+    let date = new Date(year, 0, 0);
+    date.setDate(date.getDate() + day);
+    return date;
+  }
 }

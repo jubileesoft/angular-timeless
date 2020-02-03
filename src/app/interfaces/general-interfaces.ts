@@ -3,6 +3,7 @@ import { Record } from 'src/app/models/record';
 export interface IQueryParams {
   year: number;
   day: number;
+  date: Date;
 }
 
 export interface IDayCat {

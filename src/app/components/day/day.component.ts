@@ -6,7 +6,8 @@ import { Record, RecordCategory } from 'src/app/models/record';
 import { StoreService } from 'src/app/services/store.service';
 import { DateHelper, TimeHelper } from 'src/app/utils/helper';
 
-import { IQueryParams, IDayCat } from 'src/app/interfaces/general-interfaces';
+import { IQueryParams } from 'src/app/interfaces/general-interfaces';
+import DayCat from 'src/app/models/day-cat';
 
 @Component({
   selector: 'app-day',
@@ -33,7 +34,7 @@ export class DayComponent implements OnInit {
     return this.records.filter(record => record.category === RecordCategory.C);
   }
 
-  get catA(): IDayCat {
+  get catA(): DayCat {
     const records = this.recordsCatA;
     return this._buildDayCat(records);
   }
@@ -49,7 +50,7 @@ export class DayComponent implements OnInit {
     );
   }
 
-  get catB(): IDayCat {
+  get catB(): DayCat {
     const records = this.recordsCatB;
     return this._buildDayCat(records);
   }
@@ -65,7 +66,7 @@ export class DayComponent implements OnInit {
     );
   }
 
-  get catC(): IDayCat {
+  get catC(): DayCat {
     const records = this.recordsCatC;
     return this._buildDayCat(records);
   }
@@ -80,7 +81,14 @@ export class DayComponent implements OnInit {
       !isToday || this.recordsCatC.findIndex(x => x.isOpen === true) !== -1
     );
   }
+
+  get catAll(): DayCat {
+    return this._buildDayCat(this.records);
+  }
+
   // #endregion Properties
+
+  // #region Hooks
 
   constructor(private route: ActivatedRoute, private store: StoreService) {}
 
@@ -101,7 +109,8 @@ export class DayComponent implements OnInit {
 
         const queryParams: IQueryParams = {
           year,
-          day
+          day,
+          date: DateHelper.constructDate(year, day)
         };
 
         return of(queryParams);
@@ -116,6 +125,10 @@ export class DayComponent implements OnInit {
 
     this.ticker.subscribe(x => this.tick(x));
   }
+
+  // #endregion Hooks
+
+  // #region Methoods
 
   newRecord(categoryString: string) {
     const category: RecordCategory = RecordCategory[categoryString];
@@ -153,24 +166,9 @@ export class DayComponent implements OnInit {
 
   tick(value) {}
 
-  private _buildDayCat(records: Record[]): IDayCat {
-    const duration = records.reduce(
-      (acc, curr) => acc + curr.getDurationInMinutes(),
-      0
-    );
-
-    let isOpen = false;
-
-    if (records.length > 0) {
-      isOpen = records[records.length - 1].end == null;
-    }
-
-    return {
-      durationInMinutes: duration,
-      durationAsString: TimeHelper.minutesToString(duration),
-      isOpen,
-      records: records.length,
-      lastRecord: records[records.length - 1]
-    };
+  private _buildDayCat(records: Record[]): DayCat {
+    return new DayCat(records);
   }
+
+  // #endregion Methods
 }

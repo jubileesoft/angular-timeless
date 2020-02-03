@@ -48,8 +48,8 @@ body {
 
 .media {
   max-width: $media-breakpoint;
-  padding-left: 1.5rem; // 24px with 16px default font-size
-  padding-right: 1.5rem; // 24px with 16px default font-size
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 @media (max-width: $media-breakpoint) {
