@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DayComponent } from './components/day/day.component';
 
-const routes: Routes = [{ path: '', component: DayComponent }];
+const routes: Routes = [
+  { path: '', redirectTo: '/day', pathMatch: 'full' },
+  { path: 'day', component: DayComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

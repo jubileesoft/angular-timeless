@@ -24,13 +24,48 @@ export class StoreService {
   // string = 'day.2020.176' (example)
   records = new Map<string, Array<Record>>();
 
-  // #endregion
+  public selectedYear: number;
+  public selectedDay: number;
+
+  // #endregion Properties
 
   constructor() {
     this._initialize();
   }
 
   // #region Public Methods
+
+  public getLeftDay(): [number, number] {
+    if (!this.selectedYear || !this.selectedDay) {
+      return null;
+    }
+
+    // The current day and therefore the year is definitely loaded.
+    const days = this.days.get(this.selectedYear);
+    const index = days.indexOf(this.selectedDay);
+
+    if (index > 0) {
+      return [this.selectedYear, days[index - 1]];
+    }
+
+    return null;
+  }
+
+  public getRightDay(): [number, number] {
+    if (!this.selectedYear || !this.selectedDay) {
+      return null;
+    }
+
+    // The current day and therefore the year is definitely loaded.
+    const days = this.days.get(this.selectedYear);
+    const index = days.indexOf(this.selectedDay);
+
+    if (index < days.length - 1) {
+      return [this.selectedYear, days[index + 1]];
+    }
+
+    return null;
+  }
 
   public stopOpenRecords(records: Record[]) {
     const now = Date.now();
@@ -39,25 +74,42 @@ export class StoreService {
     const todos = new Map<number, number[]>();
 
     // manipulate records
-    for (let i = 0; i < records.length; i++) {
-      if (!records[i].isOpen) {
+    for (const record of records) {
+      if (!record.isOpen) {
         continue;
       }
-      records[i].end = now;
+      record.end = now;
 
-      const year = records[i].year;
-      const day = records[i].day;
-
-      if (!todos.has(year)) {
-        const days = [day];
-        todos.set(year, days);
+      if (!todos.has(record.year)) {
+        const days = [record.day];
+        todos.set(record.year, days);
       } else {
-        const days = todos.get(year);
-        if (days.indexOf(day) === -1) {
-          days.push(day);
+        const days = todos.get(record.year);
+        if (days.indexOf(record.day) === -1) {
+          days.push(record.day);
         }
       }
     }
+
+    // for (let i = 0; i < records.length; i++) {
+    //   if (!records[i].isOpen) {
+    //     continue;
+    //   }
+    //   records[i].end = now;
+
+    //   const year = records[i].year;
+    //   const day = records[i].day;
+
+    //   if (!todos.has(year)) {
+    //     const days = [day];
+    //     todos.set(year, days);
+    //   } else {
+    //     const days = todos.get(year);
+    //     if (days.indexOf(day) === -1) {
+    //       days.push(day);
+    //     }
+    //   }
+    // }
 
     // persist data to localStorage
     todos.forEach((days, year) => {

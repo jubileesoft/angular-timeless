@@ -121,6 +121,8 @@ export class DayComponent implements OnInit {
       console.log('subscription event');
       this.queryParams = value;
       this.records = this.store.getRecords(value.year, value.day);
+      this.store.selectedYear = value.year;
+      this.store.selectedDay = value.day;
     });
 
     this.ticker.subscribe(x => this.tick(x));
