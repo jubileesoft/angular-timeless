@@ -136,8 +136,7 @@ export class DayComponent implements OnInit {
 
   // #region Methoods
 
-  edit(categoryString: string) {
-    const category: RecordCategory = RecordCategory[categoryString];
+  edit() {
     this.router.navigate([
       '/edit',
       {
