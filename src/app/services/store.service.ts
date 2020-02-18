@@ -35,6 +35,47 @@ export class StoreService {
 
   // #region Public Methods
 
+  public deleteRecord(record: Record, year: number, day: number): Record[] {
+    const key = STORAGE_VALUES.DAY(year, day);
+    let records = this.records.get(key);
+
+    const index = records.findIndex(item => {
+      return item.id === record.id;
+    });
+
+    if (index === -1) {
+      return records;
+    }
+
+    records.splice(index, 1);
+
+    // Persist new array to storage
+    this._setRecordsToStorage(year, day, records);
+    return records;
+  }
+
+  public changeRecordStart(
+    record: Record,
+    addMinutes: number,
+    year: number,
+    day: number
+  ) {
+    const key = STORAGE_VALUES.DAY(year, day);
+    record.start = record.start + addMinutes * 60 * 1000;
+    this._setRecordsToStorage(year, day, this.records.get(key));
+  }
+
+  public changeRecordEnd(
+    record: Record,
+    addMinutes: number,
+    year: number,
+    day: number
+  ) {
+    const key = STORAGE_VALUES.DAY(year, day);
+    record.end = record.end + addMinutes * 60 * 1000;
+    this._setRecordsToStorage(year, day, this.records.get(key));
+  }
+
   public getLeftDay(): [number, number] {
     if (!this.selectedYear || !this.selectedDay) {
       return null;
@@ -90,26 +131,6 @@ export class StoreService {
         }
       }
     }
-
-    // for (let i = 0; i < records.length; i++) {
-    //   if (!records[i].isOpen) {
-    //     continue;
-    //   }
-    //   records[i].end = now;
-
-    //   const year = records[i].year;
-    //   const day = records[i].day;
-
-    //   if (!todos.has(year)) {
-    //     const days = [day];
-    //     todos.set(year, days);
-    //   } else {
-    //     const days = todos.get(year);
-    //     if (days.indexOf(day) === -1) {
-    //       days.push(day);
-    //     }
-    //   }
-    // }
 
     // persist data to localStorage
     todos.forEach((days, year) => {

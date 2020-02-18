@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable, of, timer } from 'rxjs';
 import { Record, RecordCategory } from 'src/app/models/record';
@@ -90,7 +90,11 @@ export class DayComponent implements OnInit {
 
   // #region Hooks
 
-  constructor(private route: ActivatedRoute, private store: StoreService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private store: StoreService
+  ) {}
 
   ngOnInit() {
     this.queryParams$ = this.route.paramMap.pipe(
@@ -131,6 +135,17 @@ export class DayComponent implements OnInit {
   // #endregion Hooks
 
   // #region Methoods
+
+  edit(categoryString: string) {
+    const category: RecordCategory = RecordCategory[categoryString];
+    this.router.navigate([
+      '/edit',
+      {
+        year: this.queryParams.year,
+        day: this.queryParams.day
+      }
+    ]);
+  }
 
   newRecord(categoryString: string) {
     const category: RecordCategory = RecordCategory[categoryString];
