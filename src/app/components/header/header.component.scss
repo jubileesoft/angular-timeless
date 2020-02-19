@@ -1,10 +1,8 @@
 @import '../../styles/colors';
-@import '../../styles/theme.scss';
 
 .root {
   height: 72px;
-  //background: $primary-color;
-  background: $primary-color;
+  background: var(--primary-color);
   color: #ffffff;
   display: flex;
   justify-content: center;
