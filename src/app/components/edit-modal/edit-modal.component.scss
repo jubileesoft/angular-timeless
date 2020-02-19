@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: grid;
+  column-gap: 20px;
+  grid-template-columns: auto auto 1fr auto auto;
+  align-items: center;
+}
+
+.row + .row {
+  margin-top: 20px;
+}

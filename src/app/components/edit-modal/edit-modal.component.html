@@ -1,0 +1,30 @@
+<div class="row">
+  <button mat-mini-fab (click)="changeRecordStart(-10)">
+    -10
+  </button>
+  <button mat-mini-fab (click)="changeRecordStart(-1)">
+    -1
+  </button>
+  <div>{{data.record.startString}}</div>
+  <button mat-mini-fab (click)="changeRecordStart(1)">
+    +1
+  </button>
+  <button mat-mini-fab (click)="changeRecordStart(10)">
+    +10
+  </button>
+</div>
+<div class="row">
+  <button mat-mini-fab (click)="changeRecordEnd(-10)">
+    -10
+  </button>
+  <button mat-mini-fab (click)="changeRecordEnd(-1)">
+    -1
+  </button>
+  <div>{{data.record.endString}}</div>
+  <button mat-mini-fab (click)="changeRecordEnd(1)">
+    +1
+  </button>
+  <button mat-mini-fab (click)="changeRecordEnd(10)">
+    +10
+  </button>
+</div>

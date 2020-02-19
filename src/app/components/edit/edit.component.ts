@@ -5,6 +5,12 @@ import { Record, RecordCategory } from 'src/app/models/record';
 import { DateHelper } from 'src/app/utils/helper';
 import { IQueryParams } from 'src/app/interfaces/general-interfaces';
 import { MatTableDataSource } from '@angular/material';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA
+} from '@angular/material/dialog';
+import { EditModalComponent } from 'src/app/components/edit-modal/edit-modal.component';
 
 @Component({
   selector: 'app-edit',
@@ -22,7 +28,11 @@ export class EditComponent implements OnInit {
 
   // #region Hooks
 
-  constructor(private route: ActivatedRoute, private store: StoreService) {
+  constructor(
+    private route: ActivatedRoute,
+    private store: StoreService,
+    public dialog: MatDialog
+  ) {
     this.dsRecords = new MatTableDataSource<Record>();
   }
 
@@ -30,8 +40,8 @@ export class EditComponent implements OnInit {
     const year = Number(this.route.snapshot.paramMap.get('year'));
     const day = Number(this.route.snapshot.paramMap.get('day'));
     this.queryParams = {
-      year: year,
-      day: day,
+      year,
+      day,
       date: DateHelper.constructDate(year, day)
     };
     const records = this.store.getRecords(year, day);
@@ -43,6 +53,20 @@ export class EditComponent implements OnInit {
 
   // #region Methods
 
+  public edit(record: Record): void {
+    const dialogRef = this.dialog.open(EditModalComponent, {
+      //width: '250px',
+      data: {
+        record: record
+      }
+    });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+    //   this.animal = result;
+    // });
+  }
+
   public deleteRecord(record: Record) {
     this.dsRecords.data = this.store.deleteRecord(
       record,
@@ -51,22 +75,5 @@ export class EditComponent implements OnInit {
     );
   }
 
-  public changeRecordStart(record: Record, addMinutes: number) {
-    this.store.changeRecordStart(
-      record,
-      addMinutes,
-      this.queryParams.year,
-      this.queryParams.day
-    );
-  }
-
-  public changeRecordEnd(record: Record, addMinutes: number) {
-    this.store.changeRecordEnd(
-      record,
-      addMinutes,
-      this.queryParams.year,
-      this.queryParams.day
-    );
-  }
   // #endregion Methods
 }

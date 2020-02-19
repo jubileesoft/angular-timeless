@@ -9,16 +9,25 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CdkTableModule } from '@angular/cdk/table';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
 import { DayComponent } from './components/day/day.component';
 
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import { EditComponent } from './components/edit/edit.component';
+import { EditModalComponent } from './components/edit-modal/edit-modal.component';
 
 registerLocaleData(localeDe);
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, DayComponent, EditComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    DayComponent,
+    EditComponent,
+    EditModalComponent
+  ],
+  entryComponents: [EditModalComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,7 +35,8 @@ registerLocaleData(localeDe);
     MatIconModule,
     MatButtonModule,
     CdkTableModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'en' }],
   bootstrap: [AppComponent]

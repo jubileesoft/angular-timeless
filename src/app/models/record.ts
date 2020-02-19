@@ -55,6 +55,16 @@ export class Record {
     return duration;
   }
 
+  public get startString() {
+    return DateHelper.dateToString(new Date(this.start));
+  }
+
+  public get endString() {
+    return this.end === null
+      ? null
+      : DateHelper.dateToString(new Date(this.end));
+  }
+
   // #endregion Properties
 
   // #region Constructor
