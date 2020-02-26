@@ -1,43 +1,21 @@
 <!-- <div class="root"> -->
 <div class="media">
   <div class="header">
-    {{ queryParams.date | date: "fullDate" }}
+    <button mat-icon-button (click)="onLeft()">
+      <mat-icon aria-hidden="false">
+        chevron_left
+      </mat-icon>
+    </button>
+    <div class="date">
+      {{ queryParams.date | date: "fullDate" }}
+    </div>
+    <button mat-icon-button (click)="onRight()">
+      <mat-icon>
+        chevron_right
+      </mat-icon>
+    </button>
   </div>
   <div class="main">
-    <div class="cat-buttons">
-      <button
-        [disabled]="isCatAButtonDisabled"
-        mat-fab
-        color="accent"
-        (click)="newRecord('A')"
-      >
-        <!-- <mat-icon>add</mat-icon> -->
-        A
-      </button>
-
-      <button
-        mat-fab
-        color="accent"
-        [disabled]="isCatBButtonDisabled"
-        (click)="newRecord('B')"
-      >
-        <!-- <mat-icon>add</mat-icon> -->
-        B
-      </button>
-
-      <button
-        mat-fab
-        color="accent"
-        (click)="newRecord('C')"
-        [disabled]="isCatCButtonDisabled"
-      >
-        <!-- <mat-icon>add</mat-icon> -->
-        C
-      </button>
-    </div>
-
-    <div class="separator"></div>
-
     <div class="grid">
       <!-- ROW 1: CATEGORY A START -->
       <div class="text">

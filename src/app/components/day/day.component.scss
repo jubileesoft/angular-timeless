@@ -11,10 +11,16 @@
 .header {
   margin-top: 20px;
   padding: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
   background: #393939;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+
+  .date {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .main {

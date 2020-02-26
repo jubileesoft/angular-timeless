@@ -39,47 +39,14 @@ export class DayComponent implements OnInit {
     return this._buildDayCat(records);
   }
 
-  get isCatAButtonDisabled(): boolean {
-    const now = new Date();
-    const isToday =
-      this.queryParams.year == now.getFullYear() &&
-      this.queryParams.day == DateHelper.getDayOfYear(now);
-
-    return (
-      !isToday || this.recordsCatA.findIndex(x => x.isOpen === true) !== -1
-    );
-  }
-
   get catB(): DayCat {
     const records = this.recordsCatB;
     return this._buildDayCat(records);
   }
 
-  get isCatBButtonDisabled(): boolean {
-    const now = new Date();
-    const isToday =
-      this.queryParams.year == now.getFullYear() &&
-      this.queryParams.day == DateHelper.getDayOfYear(now);
-
-    return (
-      !isToday || this.recordsCatB.findIndex(x => x.isOpen === true) !== -1
-    );
-  }
-
   get catC(): DayCat {
     const records = this.recordsCatC;
     return this._buildDayCat(records);
-  }
-
-  get isCatCButtonDisabled(): boolean {
-    const now = new Date();
-    const isToday =
-      this.queryParams.year == now.getFullYear() &&
-      this.queryParams.day == DateHelper.getDayOfYear(now);
-
-    return (
-      !isToday || this.recordsCatC.findIndex(x => x.isOpen === true) !== -1
-    );
   }
 
   get catAll(): DayCat {
@@ -135,6 +102,22 @@ export class DayComponent implements OnInit {
   // #endregion Hooks
 
   // #region Methoods
+
+  onLeft() {
+    const left = this.store.getLeftDay();
+    if (!left) {
+      return;
+    }
+    this.router.navigate(['/day', { year: left[0], day: left[1] }]);
+  }
+
+  onRight() {
+    const right = this.store.getRightDay();
+    if (!right) {
+      return;
+    }
+    this.router.navigate(['/day', { year: right[0], day: right[1] }]);
+  }
 
   edit() {
     this.router.navigate([
