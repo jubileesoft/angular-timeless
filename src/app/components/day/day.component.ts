@@ -39,6 +39,10 @@ export class DayComponent implements OnInit {
     return this._buildDayCat(records);
   }
 
+  get isNewCatDisabled(): boolean {
+    return this.catA.isOpen || this.catB.isOpen || this.catC.isOpen;
+  }
+
   get catB(): DayCat {
     const records = this.recordsCatB;
     return this._buildDayCat(records);

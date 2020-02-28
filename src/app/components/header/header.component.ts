@@ -18,5 +18,9 @@ export class HeaderComponent implements OnInit {
 
   // #region Methods
 
+  onSettings() {
+    this.router.navigate(['/settings']);
+  }
+
   // #endregion Methods
 }

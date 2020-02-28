@@ -40,6 +40,7 @@
       <ng-template #elseBlockA>
         <button
           mat-flat-button
+          [disabled]="isNewCatDisabled"
           (click)="newRecord('A')"
           class="button"
           color="accent"
@@ -71,6 +72,7 @@
       <ng-template #elseBlockB>
         <button
           mat-flat-button
+          [disabled]="isNewCatDisabled"
           (click)="newRecord('B')"
           class="button"
           color="accent"
@@ -102,6 +104,7 @@
       <ng-template #elseBlockC>
         <button
           mat-flat-button
+          [disabled]="isNewCatDisabled"
           (click)="newRecord('C')"
           class="button"
           color="accent"

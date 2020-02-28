@@ -17,6 +17,7 @@ import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import { EditComponent } from './components/edit/edit.component';
 import { EditModalComponent } from './components/edit-modal/edit-modal.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 registerLocaleData(localeDe);
 
@@ -26,7 +27,8 @@ registerLocaleData(localeDe);
     HeaderComponent,
     DayComponent,
     EditComponent,
-    EditModalComponent
+    EditModalComponent,
+    SettingsComponent
   ],
   entryComponents: [EditModalComponent],
   imports: [
